@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سازنده فایل خراب جعلی | Fake Damaged File Generator</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><text y='50%' x='50%' text-anchor='middle' dominant-baseline='middle' font-size='54'>📄</text></svg>">
+
+    <!-- VazirMatn font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #f0f2f5;
+            --card-bg: #ffffff;
+            --text: #1a1a2e;
+            --text-secondary: #555;
+            --primary: #4f6ef7;
+            --primary-hover: #3b54d4;
+            --primary-light: #eef1ff;
+            --border: #e0e4ea;
+            --border-focus: #4f6ef7;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.10), 0 3px 10px rgba(0, 0, 0, 0.05);
+            --radius-sm: 8px;
+            --radius: 12px;
+            --radius-lg: 16px;
+            --transition: 0.2s ease;
+            --danger: #e74c3c;
+            --danger-light: #fdecea;
+            --success: #27ae60;
+            --success-light: #eafaf1;
+            --warning: #f39c12;
+            --warning-light: #fef9ee;
+            --font: 'Vazirmatn', 'Segoe UI', 'Roboto', 'Tahoma', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            line-height: 1.6;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-image:
+                radial-gradient(ellipse at 20% 20%, rgba(79, 110, 247, 0.04) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 70%, rgba(79, 110, 247, 0.03) 0%, transparent 60%),
+                radial-gradient(ellipse at 50% 50%, rgba(0, 0, 0, 0.01) 0%, transparent 80%);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 560px;
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            padding: 28px 30px 32px;
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4f6ef7, #7c8cf8, #4f6ef7);
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            padding-top: 4px;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .title-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon-circle {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -0.01em;
+            line-height: 1.3;
+        }
+
+        .subtitle {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            display: block;
+        }
+
+        .lang-toggle {
+            display: flex;
+            background: #f3f4f8;
+            border-radius: 25px;
+            padding: 4px;
+            gap: 2px;
+            flex-shrink: 0;
+            border: 1px solid var(--border);
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            border-radius: 22px;
+            border: none;
+            cursor: pointer;
+            font-family: var(--font);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all var(--transition);
+            background: transparent;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            letter-spacing: 0.01em;
+        }
+
+        .lang-btn.active {
+            background: #fff;
+            color: var(--primary);
+            font-weight: 600;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .lang-btn:hover:not(.active) {
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+            color: var(--text);
+            letter-spacing: -0.005em;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 8px;
+            align-items: stretch;
+        }
+
+        .input-row .input-field {
+            flex: 1;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 11px 14px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-family: var(--font);
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: all var(--transition);
+            background: #fafbfc;
+            color: var(--text);
+            outline: none;
+            letter-spacing: 0.01em;
+        }
+
+        .input-field:focus {
+            border-color: var(--border-focus);
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(79, 110, 247, 0.08);
+        }
+
+        .input-field::placeholder {
+            color: #b0b7c3;
+        }
+
+        select.input-field {
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10z' fill='%23666'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: left 14px center;
+            padding-left: 32px;
+        }
+
+        [dir="rtl"] select.input-field {
+            background-position: left 14px center;
+            padding-right: 14px;
+            padding-left: 32px;
+        }
+        [dir="ltr"] select.input-field {
+            background-position: right 14px center;
+            padding-right: 32px;
+            padding-left: 14px;
+        }
+
+        .btn {
+            padding: 10px 18px;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            font-family: var(--font);
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all var(--transition);
+            white-space: nowrap;
+            letter-spacing: 0.01em;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            justify-content: center;
+        }
+
+        .btn-outline {
+            background: #fff;
+            color: var(--primary);
+            border: 2px solid var(--border);
+            min-width: 44px;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .btn-outline:active {
+            transform: scale(0.96);
+            background: #dce3fd;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            width: 100%;
+            padding: 14px 24px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: var(--radius);
+            letter-spacing: 0.02em;
+            box-shadow: 0 4px 14px rgba(79, 110, 247, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            box-shadow: 0 6px 20px rgba(79, 110, 247, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.97);
+            box-shadow: 0 2px 8px rgba(79, 110, 247, 0.25);
+            transition: all 0.1s ease;
+        }
+
+        .btn-primary:disabled {
+            background: #b0bdd8;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        .btn-icon {
+            width: 38px;
+            height: 38px;
+            padding: 0;
+            border-radius: 50%;
+            min-width: unset;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .preview-box {
+            background: #f8fafc;
+            border: 2px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            margin-top: 18px;
+            margin-bottom: 18px;
+            transition: all var(--transition);
+        }
+
+        .preview-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+            font-size: 0.88rem;
+            gap: 8px;
+        }
+
+        .preview-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.82rem;
+        }
+
+        .preview-value {
+            font-weight: 600;
+            color: var(--text);
+            word-break: break-all;
+            text-align: end;
+            font-size: 0.85rem;
+            letter-spacing: 0.01em;
+        }
+
+        .preview-value.highlight {
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .size-display {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--primary-light);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.85rem;
+            transition: all var(--transition);
+            cursor: default;
+        }
+
+        .reroll-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--primary);
+            font-size: 1rem;
+            padding: 4px 6px;
+            border-radius: 50%;
+            transition: all var(--transition);
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .reroll-btn:hover {
+            background: rgba(79, 110, 247, 0.12);
+            transform: rotate(60deg);
+        }
+
+        .reroll-btn:active {
+            transform: rotate(180deg) scale(0.85);
+            transition: all 0.15s ease;
+        }
+
+        .custom-size-row {
+            display: none;
+            margin-top: 8px;
+            animation: fadeIn 0.3s ease;
+        }
+        .custom-size-row.visible {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .custom-size-unit {
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+
+        .note {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: 10px;
+            line-height: 1.5;
+            opacity: 0.8;
+        }
+
+        .note.warning {
+            color: var(--warning);
+            opacity: 1;
+            font-weight: 500;
+            display: none;
+        }
+        .note.warning.visible {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2.5px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+        }
+        .btn-primary.loading .spinner {
+            display: inline-block;
+        }
+        .btn-primary.loading .btn-text {
+            opacity: 0.7;
+        }
+        .btn-primary.loading {
+            pointer-events: none;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0%,100% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #1a1a2e;
+            color: #fff;
+            padding: 12px 22px;
+            border-radius: 30px;
+            font-family: var(--font);
+            font-size: 0.85rem;
+            font-weight: 500;
+            z-index: 1000;
+            opacity: 0;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+            letter-spacing: 0.01em;
+            white-space: nowrap;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 20px 16px 24px; border-radius: var(--radius); }
+            .container::before { border-radius: var(--radius) var(--radius) 0 0; }
+            .title { font-size: 1.1rem; }
+            .icon-circle { width: 34px; height: 34px; font-size: 17px; }
+            .btn-primary { padding: 13px 20px; font-size: 0.95rem; }
+            .input-field { padding: 10px 12px; font-size: 0.85rem; }
+            .form-label { font-size: 0.82rem; }
+            .lang-btn { padding: 7px 12px; font-size: 0.78rem; }
+            .preview-box { padding: 12px 14px; }
+            .preview-row { font-size: 0.8rem; }
+        }
+
+        @media (max-width: 360px) {
+            .header { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .lang-toggle { align-self: flex-start; }
+            .input-row { flex-direction: column; gap: 6px; }
+            .btn-icon { align-self: flex-end; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <div class="title-section">
+            <div class="icon-circle">📁</div>
+            <div>
+                <span class="title" data-i18n="title">سازنده فایل خراب جعلی</span>
+                <span class="subtitle" data-i18n="subtitle">Fake Damaged File Generator</span>
+            </div>
+        </div>
+        <div class="lang-toggle" role="group" aria-label="Language selector">
+            <button class="lang-btn active" data-lang="fa" aria-pressed="true">فارسی</button>
+            <button class="lang-btn" data-lang="en" aria-pressed="false">English</button>
+        </div>
+    </div>
+
+    <form id="generatorForm" novalidate>
+        <div class="form-group">
+            <label class="form-label" for="fileName" data-i18n="label_filename">نام فایل</label>
+            <div class="input-row">
+                <input type="text" id="fileName" class="input-field" placeholder="myfile" autocomplete="off" spellcheck="false">
+                <button type="button" id="randomNameBtn" class="btn btn-outline btn-icon" title="Random name" aria-label="Generate random file name">🎲</button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="fileType" data-i18n="label_filetype">نوع فایل</label>
+            <select id="fileType" class="input-field"></select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="sizePreset" data-i18n="label_size">اندازه فایل (حداکثر)</label>
+            <select id="sizePreset" class="input-field"></select>
+            <div style="margin-top: 8px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                <span class="size-display" id="sizeDisplay">~ 5.2 MB</span>
+                <button type="button" id="rerollSizeBtn" class="reroll-btn" title="Randomize size again" aria-label="Re-randomize file size">🔄</button>
+                <span style="font-size: 0.75rem; color: var(--text-secondary);" data-i18n="label_reroll_hint">اندازه تصادفی</span>
+            </div>
+            <div class="custom-size-row" id="customSizeRow">
+                <input type="number" id="customSize" class="input-field" placeholder="50" min="0.01" max="500" step="0.1" style="max-width: 130px;">
+                <span class="custom-size-unit">MB</span>
+            </div>
+        </div>
+
+        <div class="preview-box" id="previewBox">
+            <div class="preview-row">
+                <span class="preview-label" data-i18n="preview_name">📝 نام فایل:</span>
+                <span class="preview-value" id="previewName">—</span>
+            </div>
+            <div class="preview-row">
+                <span class="preview-label" data-i18n="preview_type">📎 نوع:</span>
+                <span class="preview-value" id="previewType">—</span>
+            </div>
+            <div class="preview-row">
+                <span class="preview-label" data-i18n="preview_size">📦 اندازه تقریبی:</span>
+                <span class="preview-value highlight" id="previewSize">—</span>
+            </div>
+        </div>
+
+        <button type="submit" id="generateBtn" class="btn btn-primary">
+            <span class="spinner"></span>
+            <span class="btn-text" data-i18n="btn_generate">⚡ ساخت و دانلود فایل</span>
+        </button>
+
+        <p class="note warning" id="largeFileWarning" data-i18n="warning_large">⚠️ فایل‌های بزرگ (بیش از ۵۰ مگابایت) ممکن است در برخی مرورگرهای موبایل با مشکل مواجه شوند.</p>
+        <p class="note" data-i18n="note_info">💡 فایل تولید شده دارای هدر معتبر اما محتوای تصادفی است و به عنوان فایل خراب شناخته می‌شود.</p>
+    </form>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+    (function() {
+        const i18n = {
+            fa: {
+                title: 'سازنده فایل خراب جعلی',
+                subtitle: 'Fake Damaged File Generator',
+                label_filename: 'نام فایل',
+                label_filetype: 'نوع فایل',
+                label_size: 'اندازه فایل (حداکثر)',
+                label_reroll_hint: 'اندازه تصادفی',
+                label_custom_mb: 'مگابایت',
+                preview_name: '📝 نام فایل:',
+                preview_type: '📎 نوع:',
+                preview_size: '📦 اندازه تقریبی:',
+                btn_generate: '⚡ ساخت و دانلود فایل',
+                btn_generating: '⏳ در حال ساخت...',
+                warning_large: '⚠️ فایل‌های بزرگ (بیش از ۵۰ مگابایت) ممکن است در برخی مرورگرهای موبایل با مشکل مواجه شوند.',
+                note_info: '💡 فایل تولید شده دارای هدر معتبر اما محتوای تصادفی است و به عنوان فایل خراب شناخته می‌شود.',
+                size_preset_tiny: '۱ مگابایت و کمتر',
+                size_preset_small: '۵ مگابایت و کمتر',
+                size_preset_medium: '۱۰ مگابایت و کمتر',
+                size_preset_large: '۲۰ مگابایت و کمتر',
+                size_preset_xlarge: '۵۰ مگابایت و کمتر',
+                size_preset_huge: '۱۰۰ مگابایت و کمتر',
+                size_preset_custom: 'سفارشی (دستی)',
+                category_video: '🎬 ویدیو',
+                category_office: '📄 آفیس (Office)',
+                category_image: '🖼️ تصویر',
+                category_other: '📦 سایر',
+                toast_copied: 'انجام شد!',
+                toast_downloading: 'در حال دانلود...',
+                toast_error_size: 'لطفاً اندازه معتبر وارد کنید (۰.۰۱ تا ۵۰۰ مگابایت)',
+                toast_error_generate: 'خطا در ساخت فایل. لطفاً دوباره تلاش کنید.',
+                random_name_doc: 'سند',
+                random_name_video: 'ویدیو',
+                random_name_image: 'تصویر',
+                random_name_file: 'فایل',
+                random_name_presentation: 'ارائه',
+                random_name_spreadsheet: 'صفحه‌گسترده',
+            },
+            en: {
+                title: 'Fake Damaged File Generator',
+                subtitle: 'Create Corrupted Files Instantly',
+                label_filename: 'File Name',
+                label_filetype: 'File Type',
+                label_size: 'File Size (max)',
+                label_reroll_hint: 'Random size',
+                label_custom_mb: 'MB',
+                preview_name: '📝 File Name:',
+                preview_type: '📎 Type:',
+                preview_size: '📦 Approx. Size:',
+                btn_generate: '⚡ Generate & Download',
+                btn_generating: '⏳ Generating...',
+                warning_large: '⚠️ Large files (over 50 MB) may have issues on some mobile browsers.',
+                note_info: '💡 Generated file has a valid header but random content — recognized as corrupted.',
+                size_preset_tiny: '1 MB and less',
+                size_preset_small: '5 MB and less',
+                size_preset_medium: '10 MB and less',
+                size_preset_large: '20 MB and less',
+                size_preset_xlarge: '50 MB and less',
+                size_preset_huge: '100 MB and less',
+                size_preset_custom: 'Custom (manual)',
+                category_video: '🎬 Video',
+                category_office: '📄 Office',
+                category_image: '🖼️ Image',
+                category_other: '📦 Other',
+                toast_copied: 'Done!',
+                toast_downloading: 'Downloading...',
+                toast_error_size: 'Please enter a valid size (0.01 to 500 MB)',
+                toast_error_generate: 'Error generating file. Please try again.',
+                random_name_doc: 'document',
+                random_name_video: 'video',
+                random_name_image: 'image',
+                random_name_file: 'file',
+                random_name_presentation: 'presentation',
+                random_name_spreadsheet: 'spreadsheet',
+            },
+        };
+
+        let currentLang = 'fa';
+        function t(key) { return i18n[currentLang]?.[key] || i18n['en'][key] || key; }
+
+        function updateAllI18n() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = t(key);
+                else el.textContent = t(key);
+            });
+            const genBtn = document.getElementById('generateBtn');
+            const btnText = genBtn.querySelector('.btn-text');
+            if (btnText && !genBtn.classList.contains('loading')) btnText.textContent = t('btn_generate');
+            updatePreview();
+            populateSizePresets();
+            populateFileTypes();
+            document.querySelector('.custom-size-unit').textContent = t('label_custom_mb');
+            const rerollHint = document.querySelector('#rerollSizeBtn + span');
+            if (rerollHint) rerollHint.textContent = t('label_reroll_hint');
+            updateLargeFileWarning();
+            const noteInfo = document.querySelector('.note:not(.warning)');
+            if (noteInfo) noteInfo.textContent = t('note_info');
+        }
+
+        const fileTypes = [
+            { category: 'category_video', types: [
+                { id: 'mp4', ext: '.mp4', mime: 'video/mp4', magic: [0x00,0x00,0x00,0x1C,0x66,0x74,0x79,0x70,0x6D,0x70,0x34,0x32] },
+                { id: 'avi', ext: '.avi', mime: 'video/x-msvideo', magic: [0x52,0x49,0x46,0x46,0x00,0x00,0x00,0x00,0x41,0x56,0x49,0x20] },
+                { id: 'mkv', ext: '.mkv', mime: 'video/x-matroska', magic: [0x1A,0x45,0xDF,0xA3] },
+                { id: 'mov', ext: '.mov', mime: 'video/quicktime', magic: [0x00,0x00,0x00,0x14,0x66,0x74,0x79,0x70,0x71,0x74,0x20,0x20] },
+                { id: 'wmv', ext: '.wmv', mime: 'video/x-ms-wmv', magic: [0x30,0x26,0xB2,0x75,0x8E,0x66,0xCF,0x11] },
+                { id: 'webm', ext: '.webm', mime: 'video/webm', magic: [0x1A,0x45,0xDF,0xA3] },
+            ]},
+            { category: 'category_office', types: [
+                { id: 'docx', ext: '.docx', mime: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', magic: [0x50,0x4B,0x03,0x04] },
+                { id: 'pptx', ext: '.pptx', mime: 'application/vnd.openxmlformats-officedocument.presentationml.presentation', magic: [0x50,0x4B,0x03,0x04] },
+                { id: 'xlsx', ext: '.xlsx', mime: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', magic: [0x50,0x4B,0x03,0x04] },
+                { id: 'doc', ext: '.doc', mime: 'application/msword', magic: [0xD0,0xCF,0x11,0xE0,0xA1,0xB1,0x1A,0xE1] },
+                { id: 'ppt', ext: '.ppt', mime: 'application/vnd.ms-powerpoint', magic: [0xD0,0xCF,0x11,0xE0,0xA1,0xB1,0x1A,0xE1] },
+                { id: 'xls', ext: '.xls', mime: 'application/vnd.ms-excel', magic: [0xD0,0xCF,0x11,0xE0,0xA1,0xB1,0x1A,0xE1] },
+            ]},
+            { category: 'category_image', types: [
+                { id: 'jpg', ext: '.jpg', mime: 'image/jpeg', magic: [0xFF,0xD8,0xFF,0xE0,0x00,0x10,0x4A,0x46,0x49,0x46,0x00,0x01] },
+                { id: 'png', ext: '.png', mime: 'image/png', magic: [0x89,0x50,0x4E,0x47,0x0D,0x0A,0x1A,0x0A] },
+                { id: 'gif', ext: '.gif', mime: 'image/gif', magic: [0x47,0x49,0x46,0x38,0x39,0x61] },
+                { id: 'bmp', ext: '.bmp', mime: 'image/bmp', magic: [0x42,0x4D] },
+                { id: 'webp', ext: '.webp', mime: 'image/webp', magic: [0x52,0x49,0x46,0x46,0x00,0x00,0x00,0x00,0x57,0x45,0x42,0x50] },
+            ]},
+            { category: 'category_other', types: [
+                { id: 'pdf', ext: '.pdf', mime: 'application/pdf', magic: [0x25,0x50,0x44,0x46,0x2D,0x31,0x2E,0x34,0x0A] },
+                { id: 'zip', ext: '.zip', mime: 'application/zip', magic: [0x50,0x4B,0x03,0x04] },
+                { id: 'rar', ext: '.rar', mime: 'application/vnd.rar', magic: [0x52,0x61,0x72,0x21,0x1A,0x07,0x01,0x00] },
+            ]},
+        ];
+        const fileTypeLookup = {};
+        fileTypes.forEach(cat => cat.types.forEach(ft => fileTypeLookup[ft.id] = ft));
+
+        const sizePresets = [
+            { id: 'tiny', key: 'size_preset_tiny', minBytes: 50*1024, maxBytes: 1*1024*1024, descRange: '50KB–1MB' },
+            { id: 'small', key: 'size_preset_small', minBytes: 1*1024*1024, maxBytes: 5*1024*1024, descRange: '1MB–5MB' },
+            { id: 'medium', key: 'size_preset_medium', minBytes: 2*1024*1024, maxBytes: 10*1024*1024, descRange: '2MB–10MB' },
+            { id: 'large', key: 'size_preset_large', minBytes: 4*1024*1024, maxBytes: 20*1024*1024, descRange: '4MB–20MB' },
+            { id: 'xlarge', key: 'size_preset_xlarge', minBytes: 10*1024*1024, maxBytes: 50*1024*1024, descRange: '10MB–50MB' },
+            { id: 'huge', key: 'size_preset_huge', minBytes: 20*1024*1024, maxBytes: 100*1024*1024, descRange: '20MB–100MB' },
+            { id: 'custom', key: 'size_preset_custom', minBytes: null, maxBytes: null, descRange: 'custom' },
+        ];
+
+        let currentRandomSizeBytes = 5 * 1024 * 1024;
+        let currentSelectedFileTypeId = 'mp4';
+
+        const fileNameInput = document.getElementById('fileName');
+        const fileTypeSelect = document.getElementById('fileType');
+        const sizePresetSelect = document.getElementById('sizePreset');
+        const customSizeRow = document.getElementById('customSizeRow');
+        const customSizeInput = document.getElementById('customSize');
+        const sizeDisplay = document.getElementById('sizeDisplay');
+        const rerollSizeBtn = document.getElementById('rerollSizeBtn');
+        const generateBtn = document.getElementById('generateBtn');
+        const largeFileWarning = document.getElementById('largeFileWarning');
+        const previewName = document.getElementById('previewName');
+        const previewType = document.getElementById('previewType');
+        const previewSize = document.getElementById('previewSize');
+        const toast = document.getElementById('toast');
+        const randomNameBtn = document.getElementById('randomNameBtn');
+        const generatorForm = document.getElementById('generatorForm');
+        const langBtns = document.querySelectorAll('.lang-btn');
+
+        function populateFileTypes() {
+            fileTypeSelect.innerHTML = '';
+            fileTypes.forEach(cat => {
+                const optgroup = document.createElement('optgroup');
+                optgroup.label = t(cat.category);
+                cat.types.forEach(ft => {
+                    const option = document.createElement('option');
+                    option.value = ft.id;
+                    option.textContent = `${ft.ext} — ${ft.id.toUpperCase()}`;
+                    if (ft.id === currentSelectedFileTypeId) option.selected = true;
+                    optgroup.appendChild(option);
+                });
+                fileTypeSelect.appendChild(optgroup);
+            });
+            if (!fileTypeLookup[currentSelectedFileTypeId]) {
+                currentSelectedFileTypeId = 'mp4';
+                fileTypeSelect.value = 'mp4';
+            } else fileTypeSelect.value = currentSelectedFileTypeId;
+        }
+
+        function populateSizePresets() {
+            const currentValue = sizePresetSelect.value;
+            sizePresetSelect.innerHTML = '';
+            sizePresets.forEach(p => {
+                const option = document.createElement('option');
+                option.value = p.id;
+                option.textContent = p.id === 'custom' ? t(p.key) : t(p.key) + ` (${p.descRange})`;
+                sizePresetSelect.appendChild(option);
+            });
+            if (sizePresets.some(p => p.id === currentValue)) sizePresetSelect.value = currentValue;
+            else sizePresetSelect.value = 'medium';
+            handleSizePresetChange();
+        }
+
+        function getRandomBytesInRange(min, max) {
+            const range = max - min;
+            const factor = 0.3 + Math.random() * 0.7;
+            let bytes = Math.floor(min + range * factor);
+            const jitter = Math.floor(Math.random() * 37 * 1024);
+            return Math.min(max, Math.max(min, bytes + jitter - Math.floor(37*1024/2)));
+        }
+
+        function generateRandomSize() {
+            const presetId = sizePresetSelect.value;
+            if (presetId === 'custom') {
+                const mb = parseFloat(customSizeInput.value);
+                if (isNaN(mb) || mb < 0.01 || mb > 500) return null;
+                return Math.floor(mb * 1024 * 1024);
+            }
+            const preset = sizePresets.find(p => p.id === presetId);
+            if (!preset || preset.minBytes === null) return null;
+            return getRandomBytesInRange(preset.minBytes, preset.maxBytes);
+        }
+
+        function updateSizeDisplay() {
+            const newSize = generateRandomSize();
+            if (newSize === null) {
+                sizeDisplay.textContent = '—';
+                currentRandomSizeBytes = 0;
+            } else {
+                currentRandomSizeBytes = newSize;
+                sizeDisplay.textContent = '~ ' + formatBytes(newSize);
+            }
+            updatePreview();
+            updateLargeFileWarning();
+        }
+
+        function formatBytes(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1024*1024) return (bytes/1024).toFixed(1) + ' KB';
+            if (bytes < 1024*1024*1024) return (bytes/(1024*1024)).toFixed(1) + ' MB';
+            return (bytes/(1024*1024*1024)).toFixed(2) + ' GB';
+        }
+
+        function handleSizePresetChange() {
+            if (sizePresetSelect.value === 'custom') {
+                customSizeRow.classList.add('visible');
+                if (!customSizeInput.value || isNaN(parseFloat(customSizeInput.value))) customSizeInput.value = '50';
+            } else customSizeRow.classList.remove('visible');
+            updateSizeDisplay();
+        }
+
+        function updateLargeFileWarning() {
+            if (currentRandomSizeBytes > 50 * 1024 * 1024) {
+                largeFileWarning.classList.add('visible');
+                largeFileWarning.textContent = t('warning_large');
+            } else largeFileWarning.classList.remove('visible');
+        }
+
+        function getCurrentExtension() {
+            const ft = fileTypeLookup[currentSelectedFileTypeId];
+            return ft ? ft.ext : '.mp4';
+        }
+
+        function getBaseFileName() {
+            let name = fileNameInput.value.trim();
+            if (!name) return '';
+            // Strip known extensions if present (just in case user types one)
+            const allExts = Object.values(fileTypeLookup).map(ft => ft.ext);
+            allExts.sort((a,b) => b.length - a.length);
+            const lowerName = name.toLowerCase();
+            for (const ext of allExts) {
+                if (lowerName.endsWith(ext) && lowerName.length > ext.length) {
+                    name = name.slice(0, -ext.length);
+                    break;
+                }
+            }
+            const lastDot = name.lastIndexOf('.');
+            if (lastDot > 0 && lastDot < name.length-1 && name.slice(lastDot+1).length <= 6) {
+                const possibleExt = name.slice(lastDot).toLowerCase();
+                const knownExts = Object.values(fileTypeLookup).map(ft => ft.ext.toLowerCase());
+                if (knownExts.includes(possibleExt) || possibleExt.match(/^\.[a-z0-9]{2,5}$/)) {
+                    name = name.slice(0, lastDot);
+                }
+            }
+            return name.trim();
+        }
+
+        function getFullFileName() {
+            const base = getBaseFileName();
+            const ext = getCurrentExtension();
+            return base ? base + ext : 'file' + ext;
+        }
+
+        // Generate a random base name (without extension)
+        function generateRandomName() {
+            const randNum = Math.floor(Math.random()*9999)+1;
+            const dateStr = new Date().toISOString().slice(0,10).replace(/-/g,'');
+            const catWords = {
+                category_video: ['random_name_video'],
+                category_office: ['random_name_doc','random_name_presentation','random_name_spreadsheet'],
+                category_image: ['random_name_image'],
+                category_other: ['random_name_file'],
+            };
+            let wordKey = 'random_name_file';
+            for (const cat of fileTypes) {
+                if (cat.types.some(t => t.id === currentSelectedFileTypeId)) {
+                    const keys = catWords[cat.category] || ['random_name_file'];
+                    wordKey = keys[Math.floor(Math.random()*keys.length)];
+                    break;
+                }
+            }
+            const word = t(wordKey);
+            const patterns = [
+                () => word + '_' + randNum,
+                () => word + '_' + dateStr,
+                () => word + '_' + Math.random().toString(36).substring(2,8),
+                () => 'new_' + word + '_' + randNum,
+            ];
+            return patterns[Math.floor(Math.random()*patterns.length)](); // base name only
+        }
+
+        function updatePreview() {
+            previewName.textContent = getFullFileName() || '—';
+            const ft = fileTypeLookup[currentSelectedFileTypeId];
+            previewType.textContent = ft ? ft.ext + ' (' + ft.id.toUpperCase() + ')' : '—';
+            previewSize.textContent = currentRandomSizeBytes > 0 ? formatBytes(currentRandomSizeBytes) : '—';
+        }
+
+        // Fixed random data generation respecting crypto.getRandomValues limit
+        function generateDamagedFile(targetBytes, magicBytes) {
+            const headerLen = magicBytes.length;
+            const randomDataLen = Math.max(0, targetBytes - headerLen);
+            const headerArray = new Uint8Array(magicBytes);
+            const chunks = [headerArray];
+
+            const CHUNK_SIZE = 1024 * 1024;
+            const MAX_CRYPTO_BYTES = 65536;
+            let remaining = randomDataLen;
+
+            while (remaining > 0) {
+                const chunkLen = Math.min(CHUNK_SIZE, remaining);
+                const chunk = new Uint8Array(chunkLen);
+                for (let offset = 0; offset < chunkLen; offset += MAX_CRYPTO_BYTES) {
+                    const subLen = Math.min(MAX_CRYPTO_BYTES, chunkLen - offset);
+                    const subView = chunk.subarray(offset, offset + subLen);
+                    if (window.crypto && window.crypto.getRandomValues) {
+                        window.crypto.getRandomValues(subView);
+                    } else {
+                        for (let i = 0; i < subLen; i++) subView[i] = Math.floor(Math.random() * 256);
+                    }
+                }
+                chunks.push(chunk);
+                remaining -= chunkLen;
+            }
+
+            return new Blob(chunks, {
+                type: fileTypeLookup[currentSelectedFileTypeId]?.mime || 'application/octet-stream',
+            });
+        }
+
+        function triggerDownload(blob, fileName) {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            a.style.display = 'none';
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 200);
+            if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) showToast(t('toast_downloading'));
+        }
+
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.add('show');
+            clearTimeout(toast._timeout);
+            toast._timeout = setTimeout(() => toast.classList.remove('show'), 2200);
+        }
+
+        async function handleGenerate(e) {
+            if (e) e.preventDefault();
+            if (currentRandomSizeBytes <= 0) { showToast(t('toast_error_size')); return; }
+            const ft = fileTypeLookup[currentSelectedFileTypeId];
+            if (!ft) { showToast(t('toast_error_generate')); return; }
+            if (!getBaseFileName()) fileNameInput.value = generateRandomName();
+            const finalFileName = getFullFileName();
+
+            generateBtn.classList.add('loading');
+            generateBtn.querySelector('.btn-text').textContent = t('btn_generating');
+            generateBtn.disabled = true;
+
+            setTimeout(() => {
+                try {
+                    const blob = generateDamagedFile(currentRandomSizeBytes, ft.magic);
+                    triggerDownload(blob, finalFileName);
+                    setTimeout(() => {
+                        generateBtn.classList.remove('loading');
+                        generateBtn.querySelector('.btn-text').textContent = t('btn_generate');
+                        generateBtn.disabled = false;
+                        const box = document.getElementById('previewBox');
+                        box.style.animation = 'pulse 0.4s ease';
+                        setTimeout(() => box.style.animation = '', 400);
+                    }, 300);
+                } catch (err) {
+                    console.error('File generation error:', err);
+                    generateBtn.classList.remove('loading');
+                    generateBtn.querySelector('.btn-text').textContent = t('btn_generate');
+                    generateBtn.disabled = false;
+                    showToast(t('toast_error_generate'));
+                }
+            }, 80);
+        }
+
+        // Event listeners
+        fileTypeSelect.addEventListener('change', function() {
+            currentSelectedFileTypeId = this.value;
+            // No longer sync extension into input field
+            updatePreview();
+        });
+
+        sizePresetSelect.addEventListener('change', handleSizePresetChange);
+        customSizeInput.addEventListener('input', function() {
+            if (sizePresetSelect.value === 'custom') updateSizeDisplay();
+        });
+        customSizeInput.addEventListener('change', function() {
+            if (sizePresetSelect.value === 'custom') {
+                let val = parseFloat(this.value);
+                if (isNaN(val) || val < 0.01) val = 0.01;
+                if (val > 500) val = 500;
+                this.value = val.toFixed(2);
+                updateSizeDisplay();
+            }
+        });
+
+        rerollSizeBtn.addEventListener('click', function() {
+            updateSizeDisplay();
+            this.style.transform = 'rotate(180deg)';
+            setTimeout(() => this.style.transform = '', 300);
+        });
+
+        fileNameInput.addEventListener('input', updatePreview);
+        fileNameInput.addEventListener('blur', function() {
+            // Just update preview, do not force extension into input
+            updatePreview();
+        });
+
+        randomNameBtn.addEventListener('click', function() {
+            fileNameInput.value = generateRandomName();
+            updatePreview();
+            fileNameInput.style.borderColor = 'var(--primary)';
+            fileNameInput.style.backgroundColor = '#fff';
+            setTimeout(() => { fileNameInput.style.borderColor = ''; fileNameInput.style.backgroundColor = ''; }, 600);
+        });
+
+        generatorForm.addEventListener('submit', handleGenerate);
+
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const lang = this.getAttribute('data-lang');
+                if (lang === currentLang) return;
+                currentLang = lang;
+                langBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed','false'); });
+                this.classList.add('active');
+                this.setAttribute('aria-pressed','true');
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'fa' ? 'rtl' : 'ltr';
+                updateAllI18n();
+                updatePreview();
+            });
+        });
+
+        function init() {
+            currentSelectedFileTypeId = 'mp4';
+            populateFileTypes();
+            populateSizePresets();
+            sizePresetSelect.value = 'medium';
+            handleSizePresetChange();
+            fileNameInput.value = generateRandomName(); // base name only
+            updatePreview();
+            document.documentElement.lang = 'fa';
+            document.documentElement.dir = 'rtl';
+            updateAllI18n();
+            langBtns.forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-pressed','false');
+                if (b.getAttribute('data-lang') === 'fa') {
+                    b.classList.add('active');
+                    b.setAttribute('aria-pressed','true');
+                }
+            });
+        }
+        init();
+    })();
+</script>
+</body>
+</html>
